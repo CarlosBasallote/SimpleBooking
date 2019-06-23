@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper">
+		<form class="form-horizontal form-signin" th:action="@{/checkRegister}" th:object="${RegistroUsuario}" method="POST">
+			<h3 th:text="#{signup}"></h3>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-12 control-label" for="textinput" th:text="#{email}"></label>  
+              <div class="col-md-12">
+              <input th:field="*{email}" name="textinput" th:placeholder="#{userholder}" class="form-control input-md" type="text">
+              </div>
+            </div>
+            
+            <!-- Password input-->
+            <div class="form-group">
+              <label class="col-md-12 control-label" for="passwordinput" th:text="#{password}"></label>
+              <div class="col-md-12">
+                <input th:field="*{contrasenia1}" name="passwordinput" th:placeholder="#{passholder}" class="form-control input-md" type="password">
+              </div>
+            </div>
+            
+            <!-- Password input-->
+            <div class="form-group">
+              <label class="col-md-12 control-label" for="passwordinput" th:text="#{passwordrepeat}"></label>
+              <div class="col-md-12">
+                <input th:field="*{contrasenia2}" id="passwordinput" name="passwordinput" th:placeholder="#{passrepeatholder}" class="form-control input-md" type="password">
+              </div>
+            </div>
+            
+             <button type="submit"
+				value="Registrarse" class="btn btn-lg btn-primary btn-block"
+				id="boton" th:text="#{signingup}"></button>
+            </form>
+
+
+	</div>
+</body>
+</html>

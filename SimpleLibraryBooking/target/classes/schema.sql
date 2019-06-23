@@ -1,0 +1,13 @@
+drop table AUTHORITIES if exists;
+drop table Reserva if exists;
+drop table Sala if exists;
+drop table Usuario if exists;
+drop sequence if exists hibernate_sequence;
+create sequence hibernate_sequence start with 300 increment by 1;
+create table AUTHORITIES (AUTHORITY varchar(255) not null, USERNAME varchar(255), primary key (AUTHORITY));
+create table Reserva (idReserva bigint not null, fechaFin timestamp, fechaInicio timestamp, sala_id bigint, usuario_idUsuario bigint, primary key (idReserva));
+create table Sala (id bigint not null, aforo integer not null, nombreSala varchar(255), primary key (id));
+create table Usuario (idUsuario bigint, contrasenia varchar(255), email varchar(255), enabled boolean not null, primary key (idUsuario));
+alter table AUTHORITIES add constraint FKe9pvksjije9eceqp5i48n6ivm foreign key (USERNAME) references Usuario;
+alter table Reserva add constraint FKohjg86hq57xfucudkqeesg841 foreign key (sala_id) references Sala;
+alter table Reserva add constraint FK3gbmn8o4l4u0j7fdpto6ccvis foreign key (usuario_idUsuario) references Usuario;

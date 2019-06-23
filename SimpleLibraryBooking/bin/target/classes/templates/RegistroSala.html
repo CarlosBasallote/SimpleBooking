@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="full" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="../../images/favicon.ico">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/MainPlantilla.css" rel="stylesheet">
+<title>Main</title>
+<style>
+.menuses {
+	background-color: #337ab7;
+}
+</style>
+</head>
+
+<body>
+	<div class="page-container">
+		<div class="left-content">
+			<div class="inner-content">
+				<div class="header-section">
+					<div class="top_bg">
+
+						<div class="header_top">
+							<div class="top_right">
+								<ul>
+									<li><p th:text="${usuarioActual}">USER</p></li>
+									<li><a th:href="@{../index}" th:text="#{home}"></a></li>
+									<li><p th:text="#{contact}"></p></li>
+								</ul>
+							</div>
+							<div class="top_left">
+								<div id="loginContainer" class="login">
+									<a href="/logout" class="sidebar-icon login"
+										th:text="#{logout}">Logout</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="header_bg">
+
+					<div class="header">
+						<div class="head-t"></div>
+						<div></div>
+
+						<div class="clearfix"></div>
+
+						<div class="content">
+							<div class="">
+
+
+
+								<form class="form-horizontal form-signin"
+									th:action="verificarSala" th:object="${nuevaSala}"
+									method="POST">
+									<h3 th:text="#{signup}">Registro sala</h3>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-12 control-label" for="textinput"></label>
+										<div class="col-md-6">
+											<input th:errorclass="fieldError" id="nombre"
+												name="full_name" type="text" placeholder="Nombre"
+												class="form-control input-md" th:field="*{nombreSala}">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" for="textinput"></label>
+										<div class="col-md-3">
+											<input th:errorclass="fieldError" id="presupuesto" min=0
+												name="aforo" type="number" placeholder="aforo"
+												class="form-control input-md" th:field="*{aforo}">
+
+										</div>
+									</div>
+
+									<div class="col-lg-3">
+										<button type="submit" value="Registrar sala"
+											class="btn btn-md btn-primary btn-block" id="boton">Submit</button>
+									</div>
+								</form>
+
+							</div>
+
+						</div>
+						<div class="footer">
+
+							<div class="clearfix"></div>
+							<p>© 2018 Salesianos Triana. All Rights Reserved</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sidebar-menu">
+
+			<header>
+				<div>
+					<a th:href="@{../index}"><img class="logo"
+						src="../../images/Logo.png"></a>
+				</div>
+			</header>
+			<div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
+			<div class="menu">
+				<ul id="menu">
+
+
+					<li th:if="${usuarioActual}!=${'admin'}"><a
+						th:href="@{elegirSala}"><i class="lnr lnr-layers"></i> <span>Reservar
+								Sala</span> </a></li>
+					<li th:if="${usuarioActual}==${'admin'}"><a
+						th:href="@{../admin/RegistroSala}"><i class="lnr lnr-layers"></i>
+							<span>Agregar sala</span> </a></li>
+					<li th:if="${usuarioActual}==${'admin'}"><a
+						th:href="@{../admin/salas}"><i class="lnr lnr-layers"></i> <span>Salas</span>
+					</a></li>
+					<li th:if="${usuarioActual}==${'admin'}"><a
+						th:href="@{../verificarUsuarios}"><i class="lnr lnr-layers"></i>
+							<span>Validar usuarios</span> </a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+
+</body>
+</html>
